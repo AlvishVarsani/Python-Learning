@@ -16,11 +16,10 @@ try:
             {"role": "system", "content": "You are a Java Mentor."},
             {"role": "user", "content": user_input}
     ]
-),
+)
 
 except Exception as e:
     print(f"An error occurred: {e}")
-
 first_answer = response.choices[0].message.content
 print(first_answer)
 input2=input("Do you want a detailed answer? (yes/no): ")

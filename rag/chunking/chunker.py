@@ -7,27 +7,25 @@ class Chunker:
         self.overlap = overlap
 
     def split_document(self, document):
+        text = document.page_content
+        chunks = []
+        start = 0
 
-     text = document.page_content
-     chunks = []
-     start = 0
+        while start < len(text):
+            end = start + self.chunk_size
 
-     while start < len(text):
+            chunk_text = text[start:end]
 
-        end = start + self.chunk_size
+            chunk = deepcopy(document)  # Make a full copy of the original document.
 
-        chunk_text = text[start:end]
+            chunk.page_content = chunk_text
 
-        chunk = deepcopy(document)
+            chunk.metadata["chunk_start"] = start
 
-        chunk.page_content = chunk_text
+            chunk.metadata["chunk_end"] = end
 
-        chunk.metadata["chunk_start"] = start
+            chunks.append(chunk)
 
-        chunk.metadata["chunk_end"] = end
-
-        chunks.append(chunk)
-
-        start = end - self.overlap
+            start = end - self.overlap
 
         return chunks

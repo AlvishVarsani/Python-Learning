@@ -11,4 +11,4 @@ class EmbeddingService:
 
     def embed(self, text):
 
-        return self.model.encode(text)
+        return self.model.encode(text,normalize_embeddings=True)

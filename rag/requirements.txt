@@ -4,3 +4,5 @@ pypdf
 transformers
 torch
 numpy
+openai
+python-dotenv
